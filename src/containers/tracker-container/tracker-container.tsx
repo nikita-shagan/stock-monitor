@@ -2,8 +2,14 @@
 import QuotesList from "@/components/quotes-list/quotes-list";
 import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { selectQuotesState } from "@/store/quotes/selectors";
-import { fetchQuotes, QuoteModel } from "@/store/quotes/quotes-slice";
+import { selectTrackerState } from "@/store/tracker/selectors";
+import {
+  fetchChartData,
+  fetchMacdData,
+  fetchQuotes,
+  fetchRsiData,
+  QuoteModel,
+} from "@/store/tracker/tracker-slice";
 import Dialog from "@/components/dialog/dialog";
 import { SYMBOLS_EXAMPLE } from "@/utils/constants";
 import Preloader from "@/components/preloader/preloader";
@@ -11,10 +17,18 @@ import Stack from "@/components/stack/stack";
 import QuotesFilters, {
   QuotesFiltersType,
 } from "@/components/quotes-filters/quotes-filters";
+import Chart from "@/components/chart/chart";
 
-export default function QuotesContainer() {
+export default function TrackerContainer() {
   const dispatch = useAppDispatch();
-  const { quotes, areQuotesLoading } = useAppSelector(selectQuotesState);
+  const {
+    quotes,
+    chartData,
+    rsiData,
+    macdData,
+    areQuotesLoading,
+    isChartDataLoading,
+  } = useAppSelector(selectTrackerState);
   const [filters, setFilters] = useState<QuotesFiltersType>({
     search: "",
     onlyNegative: false,
@@ -25,6 +39,14 @@ export default function QuotesContainer() {
   useEffect(() => {
     dispatch(fetchQuotes(SYMBOLS_EXAMPLE));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (quoteDetailed) {
+      dispatch(fetchChartData(quoteDetailed.symbol));
+      dispatch(fetchRsiData(quoteDetailed.symbol));
+      dispatch(fetchMacdData(quoteDetailed.symbol));
+    }
+  }, [dispatch, quoteDetailed]);
 
   if (areQuotesLoading) {
     return <Preloader />;
@@ -49,7 +71,11 @@ export default function QuotesContainer() {
         onQuoteClick={(currency) => setQuoteDetailed(currency)}
       />
       <Dialog isOpened={!!quoteDetailed} onClose={() => setQuoteDetailed(null)}>
-        <div>{quoteDetailed?.symbol}</div>
+        {isChartDataLoading ? (
+          <Preloader />
+        ) : (
+          <Chart data={chartData} rsiData={rsiData} macdData={macdData} />
+        )}
       </Dialog>
     </Stack>
   );

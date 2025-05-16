@@ -2,7 +2,7 @@ import React from "react";
 import { FixedSizeList as List } from "react-window";
 import styles from "./quotes-list.module.css";
 import QuoteItem from "@/components/quote-item/quote-item";
-import { QuoteModel } from "@/store/quotes/quotes-slice";
+import { QuoteModel } from "@/store/tracker/tracker-slice";
 
 export default function QuotesList(props: {
   quotes: QuoteModel[];

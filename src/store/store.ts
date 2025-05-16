@@ -1,10 +1,10 @@
-import { quotesReducer } from "@/store/quotes/quotes-slice";
+import { trackerReducer } from "@/store/tracker/tracker-slice";
 import { configureStore } from "@reduxjs/toolkit";
 
 export const makeStore = () => {
   return configureStore({
     reducer: {
-      quotes: quotesReducer,
+      tracker: trackerReducer,
     },
   });
 };

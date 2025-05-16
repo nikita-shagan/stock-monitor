@@ -1,6 +1,6 @@
 import styles from "./quote-item.module.css";
 import cx from "classnames";
-import { QuoteModel } from "@/store/quotes/quotes-slice";
+import { QuoteModel } from "@/store/tracker/tracker-slice";
 
 export default function QuoteItem(props: {
   quote: QuoteModel;
