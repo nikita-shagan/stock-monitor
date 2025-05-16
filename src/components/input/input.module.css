@@ -1,0 +1,17 @@
+.input {
+    background: transparent;
+    box-sizing: border-box;
+    color: var(--foreground);
+    font-size: 16px;
+    font-weight: 500;
+    min-height: 50px;
+    line-height: 20px;
+    margin: 0;
+    outline: none;
+    padding: 8px;
+    text-decoration: none;
+    touch-action: manipulation;
+    width: auto;
+    border-radius: 8px;
+    border: 1px solid #fff;
+}

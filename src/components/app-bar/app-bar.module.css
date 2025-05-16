@@ -1,0 +1,29 @@
+.appBar {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.appBarBody {
+    flex-grow: 1;
+    max-width: 1024px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 32px;
+}
+
+.appBarBodyTitle {
+    font-size: 32px;
+}
+
+@media (max-width: 720px) {
+    .appBarBodyTitle {
+        font-size: 24px;
+        padding: 16px;
+    }
+    .appBarBody {
+        padding: 8px;
+    }
+}

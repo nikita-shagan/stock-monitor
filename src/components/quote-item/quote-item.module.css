@@ -1,0 +1,29 @@
+.quoteItem {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    flex-shrink: 0;
+    min-height: 50px;
+    box-sizing: border-box;
+}
+
+.quoteItem:hover {
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 720px) {
+    .quoteItem {
+        justify-items: left;
+    }
+}
+
+.quoteItemPercent {
+    color: rgba(55, 190, 95, 255)
+}
+
+.quoteItemPercent_negative {
+    color: rgb(190, 55, 55)
+}

@@ -1,0 +1,16 @@
+.quotesFilters {
+    display: flex;
+    gap: 32px;
+    flex-grow: 1;
+    padding: 16px;
+}
+
+.quotesFilters input {
+    flex-grow: 1;
+}
+
+@media screen and (max-width: 720px){
+    .quotesFilters {
+        flex-direction: column;
+    }
+}

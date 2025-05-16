@@ -1,0 +1,62 @@
+.dialog {
+    background-color: rgba(0, 0, 0, .9);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    padding: 19px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility .2s linear, opacity .2s linear;
+}
+
+.dialogOpened {
+    visibility: visible;
+    opacity: 1;
+}
+
+.dialogBody {
+    width: 100%;
+    min-width: 150px;
+    max-width: 640px;
+    min-height: 150px;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px 0 #00000014;
+    background-color: #1e2021;
+    padding: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.dialogBodyClose {
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    display: block;
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.dialogBodyClose:hover {
+    opacity: .6;
+}
+
+@media screen and (max-width: 720px) {
+    .dialogBodyClose {
+        right: 0;
+        top: -36px;
+        width: 20px;
+        height: 20px;
+        background-size: 20px 20px;
+    }
+}

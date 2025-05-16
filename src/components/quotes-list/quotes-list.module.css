@@ -1,0 +1,7 @@
+.quotesList {
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+    flex-grow: 1;
+    padding: 24px 0;
+}
