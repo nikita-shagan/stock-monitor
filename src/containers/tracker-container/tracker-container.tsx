@@ -12,7 +12,6 @@ import {
 } from "@/store/tracker/tracker-slice";
 import Dialog from "@/components/dialog/dialog";
 import { SYMBOLS_EXAMPLE } from "@/utils/constants";
-import Preloader from "@/components/preloader/preloader";
 import Stack from "@/components/stack/stack";
 import QuotesFilters, {
   QuotesFiltersType,
@@ -48,10 +47,6 @@ export default function TrackerContainer() {
     }
   }, [dispatch, quoteDetailed]);
 
-  if (areQuotesLoading) {
-    return <Preloader />;
-  }
-
   const quotesToRender = Object.values(quotes)
     .filter((quote) =>
       quote?.symbol?.toLowerCase()?.includes(filters?.search?.toLowerCase()),
@@ -69,13 +64,15 @@ export default function TrackerContainer() {
       <QuotesList
         quotes={quotesToRender}
         onQuoteClick={(currency) => setQuoteDetailed(currency)}
+        isLoading={areQuotesLoading}
       />
       <Dialog isOpened={!!quoteDetailed} onClose={() => setQuoteDetailed(null)}>
-        {isChartDataLoading ? (
-          <Preloader />
-        ) : (
-          <Chart data={chartData} rsiData={rsiData} macdData={macdData} />
-        )}
+        <Chart
+          data={chartData}
+          rsiData={rsiData}
+          macdData={macdData}
+          isLoading={isChartDataLoading}
+        />
       </Dialog>
     </Stack>
   );

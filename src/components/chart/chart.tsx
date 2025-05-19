@@ -7,6 +7,7 @@ import {
   YAxis,
 } from "recharts";
 import Stack from "@/components/stack/stack";
+import Preloader from "@/components/preloader/preloader";
 
 type ChartData = {
   datetime: string;
@@ -28,8 +29,14 @@ export default function Chart(props: {
   data: ChartData[];
   rsiData?: RsiData[];
   macdData?: MacdData[];
+  isLoading?: boolean;
 }) {
   const { data, rsiData, macdData } = props;
+
+  if (props.isLoading) {
+    return <Preloader />;
+  }
+
   return (
     <Stack>
       <ResponsiveContainer width="100%" height={300}>
